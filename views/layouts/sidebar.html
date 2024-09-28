@@ -1,3 +1,36 @@
 <div>
-    sidebar 1
+  <div class="sidebar-content">
+    <a class="sidebar-item active">
+      <i class="fa-solid fa-house"></i>
+      Màn hình chính
+    </a>
+    <a class="sidebar-item">
+      <i class="fa-regular fa-calendar"></i>
+      Lịch
+    </a>
+    <a class="sidebar-item bd-t">
+      <i class="fa-solid fa-graduation-cap"></i>
+      Đã đăng ký
+    </a>
+    <a class="sidebar-item">
+      <i class="fa-solid fa-list-check"></i>
+      Việc cần làm
+    </a>
+
+    <a class="sidebar-item bd-t">
+      <i class="fa-solid fa-download"></i>
+      Lớp học đã lưu trữ
+    </a>
+    <a class="sidebar-item">
+      <i class="fa-solid fa-gear"></i>
+      Cài đặt
+    </a>
+  </div>
 </div>
+<script>
+ $('.sidebar-content a').click(function(){
+    $('.sidebar-item.active').removeClass('active');
+    $(this).addClass('active');
+    // console.log(  $('.sidebar-item.active'))
+});
+</script>

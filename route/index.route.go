@@ -3,9 +3,10 @@ package route
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"first-app/controller"
+	"first-app/controllers"
 )
 
 func RouteInit(app *fiber.App) {
-	app.Get("/", controller.HomePageController)
+	app.Get("/", controllers.HomePageController)
+	app.Get("/login", controllers.LoginController)
 }
