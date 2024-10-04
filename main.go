@@ -1,6 +1,7 @@
 package main
 
 import (
+	controller "first-app/controllers"
 	"first-app/database"
 	"first-app/migration"
 	"first-app/route"
@@ -18,10 +19,10 @@ func main() {
 	share.Store = session.New()
 
 	engine := html.New("./views", ".html")
-	// engine.AddFuncMap(fiber.Map{
-	// 	"isPermissionSelected": controller.IsPermissionSelected,
-	// 	"checkPermissionUser":  controller.CheckPermissionUser,
-	// })
+	engine.AddFuncMap(fiber.Map{
+		// "isPermissionSelected": controller.IsPermissionSelected,
+		"checkRoleUser": controller.CheckRoleUser,
+	})
 
 	app := fiber.New(fiber.Config{
 		Views: engine, // Sử dụng template engine đã nạp

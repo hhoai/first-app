@@ -1,10 +1,13 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 // Bảng users
 type User struct {
 	UserID      int    `gorm:"primaryKey"`
+	Name        string `gorm:"size:255"`
 	Username    string `gorm:"size:255"`
 	Password    string `gorm:"size:255"`
 	Email       string `gorm:"size:255"`
@@ -13,22 +16,37 @@ type User struct {
 	RoleID      int    // Liên kết đến bảng roles
 	Type        string `gorm:"size:255"`
 	CreatedAt   time.Time
+	SessionID   string
 }
 
 // Bảng roles
 type Role struct {
 	RoleID         int    `gorm:"primaryKey"`
-	Name           string `gorm:"size:255"`
+	RoleName       string `gorm:"size:255"`
 	UserID         int    // Liên kết đến bảng users
 	CreatedAt      time.Time
 	LastModifiedAt time.Time
 }
 
+// Bảng permissions
+type Permission struct {
+	ID             int    `gorm:"primaryKey;autoIncrement"`
+	Permission     string `gorm:"unique;not null" form:"permission" json:"permission"`
+	UserID         int    // Liên kết đến bảng users
+	CreatedAt      time.Time
+	LastModifiedAt time.Time
+}
+
+type RolePermission struct {
+	RoleID       int `gorm:"primaryKey"`
+	PermissionID int `gorm:"primaryKey"`
+}
+
 // Bảng courses
 type Course struct {
-	CourseID int    `gorm:"primaryKey"`
-	Title    string `gorm:"size:255"`
-	UserID   int    // Liên kết đến bảng users
+	CourseID    int    `gorm:"primaryKey"`
+	CourseTitle string `gorm:"size:255"`
+	UserID      int    // Liên kết đến bảng users
 }
 
 // Bảng courses_users
@@ -40,17 +58,17 @@ type CourseUser struct {
 
 // Bảng lessons
 type Lesson struct {
-	LessonID int    `gorm:"primaryKey"`
-	Title    string `gorm:"size:255"`
-	UserID   int    // Liên kết đến bảng users
-	CourseID int    // Liên kết đến bảng courses
+	LessonID    int    `gorm:"primaryKey"`
+	LessonTitle string `gorm:"size:255"`
+	UserID      int    // Liên kết đến bảng users
+	CourseID    int    // Liên kết đến bảng courses
 }
 
 // Bảng posts
 type Post struct {
 	PostID         int    `gorm:"primaryKey"`
-	Title          string `gorm:"size:255"`
-	Body           string
+	PostTitle      string `gorm:"size:255"`
+	PostBody       string
 	LessonID       int // Liên kết đến bảng lessons
 	UserID         int // Liên kết đến bảng users
 	CreatedAt      time.Time
@@ -60,8 +78,8 @@ type Post struct {
 // Bảng assignments
 type Assignment struct {
 	AssignmentID     int    `gorm:"primaryKey"`
-	Title            string `gorm:"size:255"`
-	Body             string
+	AssignmentTitle  string `gorm:"size:255"`
+	AssignmentBody   string
 	UserID           int    // Liên kết đến bảng users
 	LessonID         int    // Liên kết đến bảng lessons
 	AssignmentStatus string `gorm:"size:255"`

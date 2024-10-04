@@ -1,0 +1,88 @@
+<div class="signup-container"></div>
+  <div class="signup-content">
+    <h1 style="font-size: 2.5rem; margin-bottom: 9px">{{.Title}}</h1>
+    <form id="form">
+      <label for="address">Họ tên</label>
+      <input type="address" id="name" name="name" />
+      <span class="address-error red"></span>
+      <br />
+      <label for="username">Tên đăng nhập</label>
+      <input type="text" id="username" name="username" />
+      <span class="username-error red"></span>
+      <br />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" />
+      <span class="email-error red"></span>
+      <br />
+      <label for="phone">Số điện thoại</label>
+      <input type="phone" id="phonenumber" name="phonenumber" />
+      <span class="phone-error red"></span>
+      <br />
+      <label for="password">Mật khẩu</label>
+      <input type="password" id="password" name="password" />
+      <span class="password-error red"></span>
+      <br />
+      <label>Vai trò</label>
+      <select name="role_id" id="role_id">
+        {{range .Role}}
+        <option value="{{.RoleID}}">{{.RoleName}}</option>
+        {{end}}
+      </select>
+      <br>
+      
+      <button type="submit">Tạo tài khoản</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    const clearErrorMessage = () => {
+      $(".username-error").text("");
+      $(".password-error").text("");
+      $(".email-error").text("");
+      $(".phone-error").text("");
+      $(".address-error").text("");
+      $(".role-error").text("");
+    };
+
+    $("#form").on("submit", function (event) {
+      event.preventDefault(); // Ngăn chặn hành động gửi mặc định của biểu mẫu
+
+      // Lấy dữ liệu biểu mẫu
+      var formData = $(this).serialize();
+      $.ajax({
+        url: "/admin/account-admin/account",
+        method: "POST",
+        data: formData,
+        // data: {
+        //   "username": $("#username").val(),
+        //   "password": $("#password").val(),
+        //   "email": $("#email").val(),
+        //   "phone": $("#phone").val(),
+        //   "address": $("#address").val(),
+        //   "role": $("#role_id").val(),
+        // },
+      })
+        .done(function (response) {
+          window.location.href = "/admin/account-admin";
+          console.log("Success:", response);
+          console.log(formData)
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          // This function runs if the request fails
+          console.log("Request failed:", textStatus);
+          console.error("Error:", errorThrown);
+          console.log(jqXHR);
+          console.log(formData)
+          clearErrorMessage();
+          let responseJSON = jqXHR.responseJSON;
+          $(".username-error").text(responseJSON.NameError);
+          $(".password-error").text(responseJSON.PasswordError);
+          $(".email-error").text(responseJSON.EmailError);
+          $(".phone-error").text(responseJSON.PhoneError);
+          $(".address-error").text(responseJSON.AddressError);
+        });
+    });
+  });
+</script>

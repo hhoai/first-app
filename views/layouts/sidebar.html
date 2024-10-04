@@ -1,36 +1,102 @@
 <div>
   <div class="sidebar-content">
-    <a class="sidebar-item active">
-      <i class="fa-solid fa-house"></i>
-      Màn hình chính
-    </a>
-    <a class="sidebar-item">
-      <i class="fa-regular fa-calendar"></i>
-      Lịch
-    </a>
-    <a class="sidebar-item bd-t">
-      <i class="fa-solid fa-graduation-cap"></i>
-      Đã đăng ký
-    </a>
-    <a class="sidebar-item">
-      <i class="fa-solid fa-list-check"></i>
-      Việc cần làm
-    </a>
-
-    <a class="sidebar-item bd-t">
-      <i class="fa-solid fa-download"></i>
-      Lớp học đã lưu trữ
-    </a>
-    <a class="sidebar-item">
-      <i class="fa-solid fa-gear"></i>
-      Cài đặt
-    </a>
+    <ul class="sidebar-menu tree" data-widget="tree">
+      {{if checkRoleUser "student" .Ctx}}
+      <li>
+        <a class="sidebar-item active" href="/">
+          <i class="fa-solid fa-house"></i>
+          Màn hình chính
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item" href="/">
+          <i class="fa-regular fa-calendar"></i>
+          Lịch
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item bd-t" href="/">
+          <i class="fa-solid fa-graduation-cap"></i>
+          Đã đăng ký
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item" href="/">
+          <i class="fa-solid fa-list-check"></i>
+          Việc cần làm
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item bd-t" href="/">
+          <i class="fa-solid fa-download"></i>
+          Lớp học đã lưu trữ
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item" href="/">
+          <i class="fa-solid fa-gear"></i>
+          Cài đặt
+        </a>
+      </li>
+      {{end}} {{if checkRoleUser "admin" .Ctx}}
+      <li class="treeview">
+        <a href="#" class="sidebar-item">
+          <i span="" class="icon-Layout-grid"
+            ><span class="path1"></span><span class="path2"></span
+          ></i>
+          <span>Quản lý tài khoản</span>
+          <span class="pull-right-container">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="/admin/account-admin"
+              ><i class="icon-Commit"
+                ><span class="path1"></span><span class="path2"></span></i
+              >Tài khoản Admin</a
+            >
+          </li>
+          <li>
+            <a href="/admin/account-instructor"
+              ><i class="icon-Commit"
+                ><span class="path1"></span><span class="path2"></span></i
+              >Tài khoản Giáo viên</a
+            >
+          </li>
+          <li>
+            <a href="/admin/account-student"
+              ><i class="icon-Commit"
+                ><span class="path1"></span><span class="path2"></span></i
+              >Tài khoản Học sinh</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/admin/account/role" class="sidebar-item">
+          <i class="icon-Incoming-mail"
+            ><span class="path1"></span><span class="path2"></span
+          ></i>
+          <span>Quản lý quyền</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/course" class="sidebar-item">
+          <i class="icon-Incoming-mail"
+            ><span class="path1"></span><span class="path2"></span
+          ></i>
+          <span>Quản lý khóa học</span>
+        </a>
+      </li>
+      {{end}}
+    </ul>
   </div>
 </div>
 <script>
- $('.sidebar-content a').click(function(){
-    $('.sidebar-item.active').removeClass('active');
-    $(this).addClass('active');
+  $(".sidebar-content a").click(function () {
+    $(".sidebar-item.active").removeClass("active");
+    $(this).addClass("active");
     // console.log(  $('.sidebar-item.active'))
-});
+  });
 </script>
