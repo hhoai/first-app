@@ -56,18 +56,33 @@ func RouteInit(app *fiber.App) {
 
 	app.Put("/admin/account-instructor/account/:id", controller.UpdateInstructorAccountPutController)
 
-	// admin --- qltk
-	// admin := app.Group("/admin", middleware.IsAuthenticated)
+	// admin
+	// ----- qltk
+	admin := app.Group("/admin", middleware.IsAuthenticated)
 
-	app.Get("admin/account-student", controller.StudentAccountController)
+	admin.Get("/account-student", controller.StudentAccountController)
 
-	app.Get("/admin/account-student/account", controller.CreateStudentAccountController)
+	admin.Get("/account-student/account", controller.CreateStudentAccountController)
 
-	app.Post("/admin/account-student/account", controller.CreateStudentAccountPostController)
+	admin.Post("/account-student/account", controller.CreateStudentAccountPostController)
 
-	app.Delete("/admin/account-student/account/:id", controller.DeleteStudentAccountController)
+	admin.Delete("/account-student/account/:id", controller.DeleteStudentAccountController)
 
-	app.Get("/admin/account-student/account/:id", controller.UpdateStudentAccountController)
+	admin.Get("/account-student/account/:id", controller.UpdateStudentAccountController)
 
-	app.Put("/admin/account-student/account/:id", controller.UpdateStudentAccountPutController)
+	admin.Put("/account-student/account/:id", controller.UpdateStudentAccountPutController)
+
+	// ----- ql quyen
+
+	admin.Get("/account/createRole", controller.CreateRoleController).Name("createRole")
+
+	admin.Post("/account/createRole", controller.CreateRolePostController)
+
+	admin.Get("/account/deleteRole/:id", controller.DeleteRoleController).Name("deleteRole")
+
+	admin.Get("/account/updateRole/:id", controller.UpdateRoleController).Name("UpdateRole")
+
+	admin.Put("/account/updateRole/:id", controller.UpdateRolePutController)
+
+	admin.Get("/account/role", controller.RoleController)
 }

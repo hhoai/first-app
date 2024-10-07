@@ -73,6 +73,7 @@
           // This function runs if the request fails
           console.log("Request failed:", textStatus);
           console.error("Error:", errorThrown);
+          showError(errorThrown);
           console.log(jqXHR);
           console.log(formData)
           clearErrorMessage();

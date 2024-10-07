@@ -1,0 +1,165 @@
+<div class="signup-container">
+  <div class="signup-content">
+    <h1 style="font-size: 2.5rem; margin-bottom: 9px">{{.Title}}</h1>
+    <form id="form">
+      <label for="role">Vai trò</label>
+      <input type="text" id="role"name="role" />
+      <span class="role-error red"></span>
+      <br />
+      <label>Quyền hạn</label>
+      {{range .Permission}}
+      <div class="permission">
+        <input type="checkbox" class="filled-in" id="{{.PermissionID}}" name="permission" value="{{.PermissionID}}"/>
+        <label style="font-weight: normal;" for="{{.PermissionID}}">{{.PermissionName}}</label>
+      </div>
+      {{end}}
+      <span class="permission-error red"></span>
+      <br>
+      <button type="submit">Thêm</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    const clearErrorMessage = () => {
+      $(".role-error").text("");
+    };
+
+    $("#form").on("submit", function (event) {
+      event.preventDefault(); // Ngăn chặn hành động gửi mặc định của biểu mẫu
+
+      // Lấy dữ liệu biểu mẫu
+      var formData = $(this).serialize();
+      $.ajax({
+        url: "/admin/account/createRole",
+        method: "POST",
+        data: formData,
+        // data: {
+        //   "username": $("#username").val(),
+        //   "password": $("#password").val(),
+        //   "email": $("#email").val(),
+        //   "phone": $("#phone").val(),
+        //   "address": $("#address").val(),
+        //   "role": $("#role_id").val(),
+        // },
+      })
+        .done(function (response) {
+          window.location.href = "/admin/account/role";
+          showSuccess("Success:", response);
+          console.log(formData)
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          // This function runs if the request fails
+          console.log("Request failed:", textStatus);
+          console.error("Error:", errorThrown);
+          console.log(jqXHR);
+          console.log(formData)
+          clearErrorMessage();
+          let responseJSON = jqXHR.responseJSON;
+          // $(".role-error").text(responseJSON.RoleNameError);
+         });
+    });
+  });
+</script>
+<!-- <script>
+    // get informations
+    const nameInput = document.querySelector("input[name='username']");
+    const passwordInput = document.querySelector("input[name='password']");
+    const emailInput = document.querySelector("input[name='email']");
+    const phoneInput = document.querySelector("input[name='phone']");
+    const addressInput = document.querySelector("input[name='address']");
+
+    const usernameError = document.querySelector(".username-error");
+    const passwordError = document.querySelector(".password-error");
+    const emailError = document.querySelector(".email-error");
+    const addressError = document.querySelector(".address-error");
+    const phoneError = document.querySelector(".phone-error");
+
+    const sendMessageBtn = document.querySelector("button[type=submit]");
+
+    const clearErrorMessage = () => {
+      usernameError.textContent = "";
+      passwordError.textContent = "";
+      emailError.textContent = "";
+      phoneError.textContent = "";
+      addressError.textContent = "";
+    };
+
+    const validationEmailError = (email) => {
+      if (email.trim() === "") {
+        emailError.textContent = "Email is required!";
+        // alert("Please enter a valid email address")
+        return false;
+      } else {
+        var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (regexEmail.test(email.trim())) {
+          return true;
+        } else {
+          emailError.innerHTML = "Email is not valid!";
+          return false;
+        }
+      }
+    };
+
+    const validationPhoneNumberError = (phone) => {
+      if (phone.trim() === "") {
+        phoneError.textContent = "Phone is required!";
+        return false;
+      } else {
+        var regex = /^0\d{9}$/;
+        if (regex.test(phoneInput.value)) {
+          return true;
+        } else {
+          phoneError.innerHTML = "Please enter a valid phone number!";
+          return false;
+        }
+      }
+    };
+
+    const validationPasswordError = (password) => {
+      if (password.trim() === "") {
+        passwordError.innerHTML = "Password is required!";
+        return false;
+      } else if (password.trim().length < 8 || password.trim().length > 20) {
+        console.log("Á");
+        passwordError.innerHTML =
+          "Password must be between 8 and 20 characters!";
+        return false;
+      }
+      return true;
+    };
+
+    const validationAddressError = (address) => {
+      if (address.trim() === "") {
+        addressError.innerHTML = "Address is required!";
+        return false;
+      }
+      return true;
+    };
+
+    const validationUserName = (username) => {
+      if (username.trim().length < 8 || username.trim().length > 30) {
+        usernameError.innerHTML =
+          "Username must be between 8 and 30 characters!";
+        return false;
+      }
+      return true;
+    };
+
+    sendMessageBtn.onclick = function (e) {
+      e.preventDefault(); // Ngăn submit
+      clearErrorMessage();
+
+      if (
+        ( validationUserName(nameInput.value) +
+        validationEmailError(emailInput.value) +
+        validationPhoneNumberError(phoneInput.value) +
+        validationPasswordError(passwordInput.value) +
+        validationAddressError(addressInput.value) ) 
+        == 5
+      ){
+        document.getElementById("form").submit();
+      }
+    };
+  </script> -->

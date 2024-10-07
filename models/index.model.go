@@ -21,8 +21,8 @@ type User struct {
 
 // Bảng roles
 type Role struct {
-	RoleID         int    `gorm:"primaryKey"`
-	RoleName       string `gorm:"size:255"`
+	RoleID         int    `gorm:"primaryKey;autoIncrement"`
+	RoleName       string `gorm:"size:255" form:"role" json:"role"`
 	UserID         int    // Liên kết đến bảng users
 	CreatedAt      time.Time
 	LastModifiedAt time.Time
@@ -30,8 +30,8 @@ type Role struct {
 
 // Bảng permissions
 type Permission struct {
-	ID             int    `gorm:"primaryKey;autoIncrement"`
-	Permission     string `gorm:"unique;not null" form:"permission" json:"permission"`
+	PermissionID   int    `gorm:"primaryKey;autoIncrement"`
+	PermissionName string `gorm:"unique;not null" form:"permission" json:"permission"`
 	UserID         int    // Liên kết đến bảng users
 	CreatedAt      time.Time
 	LastModifiedAt time.Time

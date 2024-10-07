@@ -29,12 +29,7 @@ func GetSessionUser(c *fiber.Ctx) models.User {
 func RoleUser(c *fiber.Ctx) string {
 	user := GetSessionUser(c)
 
-	var role models.Role
-	if err := database.DB.Where("role_id = ?", user.RoleID).Find(&role); err != nil {
-		log.Println(err)
-	}
-
-	return role.RoleName
+	return user.Type
 }
 
 func CheckRoleUser(s string, c *fiber.Ctx) bool {

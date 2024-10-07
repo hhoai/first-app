@@ -15,7 +15,7 @@ $(function () {
     $('[data-mask]').inputmask();
 
     //Date range picker
-    $('#reservation').daterangepicker();  //Date range picker with time picker
+    // $('#reservation').daterangepicker();  //Date range picker with time picker
     $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
     //Date range as a button
     $('#daterange-btn').daterangepicker(

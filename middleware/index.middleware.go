@@ -54,7 +54,7 @@ func contains(slice []int, item int) bool {
 }
 
 func CheckPermission(c *fiber.Ctx) error {
-	requiredPermission := c.Route().Name // hoặc sử dụng c.Route().Path nếu bạn muốn dựa trên URL
+	requiredPermission := c.Route().Name // hoặc sử dụng c.Route().Path nếu muốn dựa trên URL
 
 	userLogin := controller.GetSessionUser(c)
 
@@ -81,7 +81,7 @@ func CheckPermission(c *fiber.Ctx) error {
 	log.Println("mang cac permission tuong ung voi role nguoi dung :", permissionID)
 	log.Println("role", roleId, requiredPermission)
 
-	if contains(permissionID, permission.ID) {
+	if contains(permissionID, permission.PermissionID) {
 		log.Println("contains")
 		return c.Next()
 	}

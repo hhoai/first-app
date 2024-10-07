@@ -966,56 +966,56 @@ throw new Error('template requires jQuery')
   
   // Slim scrolling
   
-  $('.inner-content-div').slimScroll({
-    height: '200'
-  });
+  // $('.inner-content-div').slimScroll({
+  //   height: '200'
+  // });
 
-  $('.sm-scrol').slimScroll({
-    height: '250'
-  });
+//   $('.sm-scrol').slimScroll({
+//     height: '250'
+//   });
 	
-  $('.direct-chat-messages').slimScroll({
-    height: '420'
-  });
+//   $('.direct-chat-messages').slimScroll({
+//     height: '420'
+//   });
 	
-  $('.chat-box-one').slimScroll({
-    height: '550'
-  });
+//   $('.chat-box-one').slimScroll({
+//     height: '550'
+//   });
 
-  $('.chat-box-one2').slimScroll({
-    height: '580'
-  });
+//   $('.chat-box-one2').slimScroll({
+//     height: '580'
+//   });
 
-  $('.chat-box-one-side').slimScroll({
-    height: '650'
-  });
+//   $('.chat-box-one-side').slimScroll({
+//     height: '650'
+//   });
 
-  $('.chat-box-one-side2').slimScroll({
-    height: '500'
-  });
+//   $('.chat-box-one-side2').slimScroll({
+//     height: '500'
+//   });
 
-  $('.chat-box-one-side3').slimScroll({
-    height: '685'
-  });
+//   $('.chat-box-one-side3').slimScroll({
+//     height: '685'
+//   });
 	
-  $('.notification-side').slimScroll({
-    height: '325'
-  });
+//   $('.notification-side').slimScroll({
+//     height: '325'
+//   });
 	
-  $('.suggestions-side').slimScroll({
-    height: '300'
-  });
+//   $('.suggestions-side').slimScroll({
+//     height: '300'
+//   });
 	
-  $('.events-side').slimScroll({
-    height: '265'
-  });	
+//   $('.events-side').slimScroll({
+//     height: '265'
+//   });	
 	
-  $('.pat-div').slimScroll({
-    height: '204'
-  });
-$('.demo-panel-bx').slimScroll({
-    height: 'auto'
-  });
+//   $('.pat-div').slimScroll({
+//     height: '204'
+//   });
+// $('.demo-panel-bx').slimScroll({
+//     height: 'auto'
+//   });
   
   $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
         $(".app-search").toggle(200);

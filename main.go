@@ -20,8 +20,8 @@ func main() {
 
 	engine := html.New("./views", ".html")
 	engine.AddFuncMap(fiber.Map{
-		// "isPermissionSelected": controller.IsPermissionSelected,
-		"checkRoleUser": controller.CheckRoleUser,
+		"isPermissionSelected": controller.IsPermissionSelected,
+		"checkRoleUser":        controller.CheckRoleUser,
 	})
 
 	app := fiber.New(fiber.Config{
