@@ -68,7 +68,7 @@ li {
 }
 
 .sidebar-content .sidebar-item {
-  padding: 10px 30px;
+  padding: 10px 0;
   height: 48px;
   display: flex;
   align-items: center;
@@ -90,4 +90,12 @@ li {
 
 .selectedRow {
   background-color: azure !important;
+}
+
+.admin-container {
+  padding: 10px 20px;
+}
+
+.admin-container .admin-content {
+  padding: 20px ;
 }
