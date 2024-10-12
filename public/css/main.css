@@ -1,6 +1,8 @@
 :root {
   --border-color: #ccc;
-  --text-color: #3c4043;
+  --text-color: #353738;
+  --primary-color-hover: #1e8e3e;
+  --primary-color: #28af4e;
 }
 
 * {
@@ -16,7 +18,7 @@ html {
 }
 
 a {
-  color: #5f6368;
+  color: var(--text-color);
   text-decoration: none;
 }
 a:hover {
@@ -38,10 +40,10 @@ li {
   padding: 10px 30px;
   border-bottom: 1px solid var(--border-color);
   height: 64px;
-  font-size: 20px;  
+  font-size: 20px;
 }
 
-.left-header, 
+.left-header,
 .right-header {
   display: flex;
   gap: 15px;
@@ -52,12 +54,12 @@ li {
 }
 
 .left-header a:hover {
-  color: #1e8e3e;
+  color: var(--primary-color-hover);
   text-decoration: underline;
 }
 
-.right-header i:hover{
-  color: #1e8e3e;
+.right-header i:hover {
+  color: var(--primary-color-hover);
   cursor: pointer;
 }
 .sidebar-container {
@@ -88,6 +90,15 @@ li {
   border-top: 1px solid var(--border-color);
 }
 
+.table {
+  margin: 20px 0;
+}
+
+#userTable {
+  width: 100%;
+  margin: 20px 0;
+}
+
 .selectedRow {
   background-color: azure !important;
 }
@@ -97,5 +108,75 @@ li {
 }
 
 .admin-container .admin-content {
-  padding: 20px ;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2.5rem; margin-bottom: 9px;
+  margin-left: 15px;
+}
+
+.account {
+  position: relative;
+}
+
+.inf-user {
+  display: none;
+  position: absolute;
+  top: 64px;
+  right: 0px;
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.inf-user p {
+  padding: 8px 10px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.inf-user .action {
+  display: flex;
+  flex-direction: column;
+}
+
+.inf-user .action a {
+  padding: 8px 10px;
+}
+
+.inf-user .action a:hover {
+  color: var(--primary-color-hover);
+  text-decoration: underline;
+}
+
+.inf-user-display {
+  display: block;
+}
+
+.create, .update-btn {
+  padding: 8px 15px;
+  background: var(--primary-color);
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.create {
+  margin: 23px;
+}
+
+.create:hover, .update-btn:hover {
+  color: #fff !important;
+  background: var(--primary-color-hover);
+}
+
+#frm-example {
+  margin-top: 20px;
+}
+
+.topleft {
+  top: 50px !important;
+  left: -100px !important;
 }

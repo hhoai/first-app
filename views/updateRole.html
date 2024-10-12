@@ -1,23 +1,49 @@
 <div class="admin-container">
   <div class="admin-content">
-    <h1 style="font-size: 2.5rem; margin-bottom: 9px">{{.Title}}</h1>
+    <h1 class="title">{{.Title}}</h1>
     <form id="form">
-      <label for="role">Vai trò</label>
-      <input type="text" id="role" name="role" value="{{.Role}}"/>
-      <span class="role-error red"></span>
-      <br />
-      <label>Quyền hạn</label>
-      {{range .Permission}}
-      <div class="permission">
-        <input type="checkbox" class="filled-in" id="{{.PermissionID}}" name="permission" value="{{.PermissionID}}" {{if isPermissionSelected $.PermissionID .PermissionID}}checked{{end}}/>
-        <label for="{{.PermissionID}}" style="font-weight: normal;">{{.PermissionName}}</label>
+      <div class="box-body">
+        <div class="form-group">
+          <label>Vai trò</label>
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              value="{{.Role}}"
+              type="text"
+              id="role"
+              name="role"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Quyền hạn</label>
+          <div class="input-group mb-3">
+            {{range .Permission}}
+            <div class="permission">
+              <input
+                type="checkbox"
+                class="filled-in"
+                id="{{.PermissionID}}"
+                name="permission"
+                value="{{.PermissionID}}"
+                {{if isPermissionSelected $.PermissionID .PermissionID}}checked{{end}}
+              />
+              <label style="font-weight: normal" for="{{.PermissionID}}">{{.PermissionName}}</label> 
+              <br>
+            </div>
+            {{end}}
+          </div>
+        </div>
       </div>
-      {{end}}
-      <span class="permission-error red"></span>
-      <br>
-      <!-- <input type="hidden" id="accountID" value="{{.id}}"> -->
-      <button type="submit">Cập nhật</button>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-rounded btn-primary btn-outline">
+          <i class="ti-save-alt"></i> Lưu
+        </button>
+      </div>
     </form>
+
   </div>
 </div>
 

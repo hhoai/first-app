@@ -85,10 +85,10 @@ func GetDataAdmin(c *fiber.Ctx) error {
 	var users []models.User
 
 	// Get total number of records
-	database.DB.Table("users").Count(&totalRecords)
+	database.DB.Table("users").Where("type = 'admin'").Count(&totalRecords)
 
 	// Apply search filter if provided
-	query := database.DB.Table("users")
+	query := database.DB.Table("users").Where("type = 'admin'")
 
 	// search theo cot
 	if searchValue != "" {
@@ -102,10 +102,9 @@ func GetDataAdmin(c *fiber.Ctx) error {
 	// database.DB.Table("user_entities").Offset(start).Limit(length).Find(&users)
 	database.DB.Offset(start).Limit(length).Find(&users)
 
-	log.Println(users)
+	// log.Println(users)
 	var account []models.UserWithRowNumber
 	result := query.
-		Where("type = 'admin'").
 		Joins("INNER JOIN roles ON users.role_id = roles.role_id").
 		Select("ROW_NUMBER() OVER (ORDER BY ID) AS RowNumber, users.user_id AS ID, name, username, email, phone_number, roles.role_name AS role_name").
 		Offset(start).
@@ -116,7 +115,7 @@ func GetDataAdmin(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).SendString(result.Error.Error())
 	}
 
-	log.Println("acc: ", account)
+	// log.Println("acc: ", account)
 
 	// Prepare response
 	response := map[string]interface{}{
@@ -145,8 +144,9 @@ func CreateAdminAccountController(c *fiber.Ctx) error {
 	}
 
 	data := fiber.Map{
-		"Role": roles,
-		"Ctx":  c,
+		"Role":  roles,
+		"Ctx":   c,
+		"Title": "Tạo tài khoản",
 	}
 
 	return c.Render("createAdminAccount", data, "layouts/main")
@@ -261,6 +261,7 @@ func UpdateAdminAccountController(c *fiber.Ctx) error {
 		"Name":        p.Name,
 		"RoleID":      p.RoleID,
 		"Roles":       roles,
+		"Title":       "Cập nhật tài khoản",
 		"Ctx":         c,
 	}
 	return c.Render("updateAdminAccount", data, "layouts/main")
@@ -335,11 +336,10 @@ func UpdateAdminAccountPutController(c *fiber.Ctx) error {
 	}
 
 	user := fiber.Map{
-		"Users": users,
-		"Ctx":   c,
+		// "Users": users,
+		"Ctx": c,
 	}
 	return c.Render("accountAdmin", user, "layouts/main")
-	// return c.Redirect("/admin")
 	// ...
 }
 

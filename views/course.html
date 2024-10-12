@@ -1,21 +1,31 @@
 <div class="admin-container">
   <div class="admin-content">
-    <a class="create" href="createRole">Thêm vai trò</a>
+    <a class="create" href="course/createCourse">Thêm khóa học</a>
     <div style="margin: 20px 0">
       <table id="userTable" class="display">
         <thead>
           <th>STT</th>
-          <th>Vai trò</th>
+          <th>Tên khóa học</th>
+          <th>Mô tả</th>
+          <th>Giáo viên</th>
           <th>Action</th>
         </thead>
         <tbody>
-          {{range .Roles}}
+          {{range .Courses}}
           <tr>
             <td>{{.RowNumber}}</td>
-            <td>{{.RoleName}}</td>
+            <td>{{.CourseTitle}}</td>
+            <td>{{.CourseDescription}}</td>
+            <td>{{.Instructor}}</td>
             <td>
-              <a class="update-btn" href="updateRole/{{.ID}}">Cập nhật</a>
-              <a class="btn-danger" href="deleteRole/{{.ID}}">xóa</a>
+              <a class="update-btn" href="course/updateCourse/{{.CourseID}}"
+                >Cập nhật</a
+              >
+              <a
+                class="delete-btn btn-danger"
+                href="course/deleteCourse/{{.CourseID}}"
+                >xóa</a
+              >
             </td>
           </tr>
           {{end}}

@@ -1,0 +1,83 @@
+<div class="admin-container"></div>
+  <div class="admin-content">
+    <h1 class="title">{{.Title}}</h1>
+    <!-- <form id="form">
+      <label for="name">Tên khóa học</label>
+      <input type="text" id="name" name="courseName" />
+      <span class="name-error red"></span>
+      <br /> 
+      <label for="description">Mô tả khóa học</label>
+      <input type="text" id="description" name="description" />
+      <span class="name-error red"></span>
+      <br />
+      <button type="submit">Tạo khóa học</button>
+    </form> -->
+    <form id="form">
+      <div class="box-body">
+        <div class="form-group">
+          <label>Tên khóa học</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Tên khóa học"  id="name" name="courseName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mô tả</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Mô tả" id="description" name="description">
+          </div>
+        </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-rounded btn-primary btn-outline">
+          <i class="ti-save-alt"></i> Tạo khóa học
+        </button>
+      </div>  
+    </form>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    const clearErrorMessage = () => {
+      $(".name-error").text("");
+    };
+
+    $("#form").on("submit", function (event) {
+      event.preventDefault(); // Ngăn chặn hành động gửi mặc định của biểu mẫu
+
+      // Lấy dữ liệu biểu mẫu
+      var formData = $(this).serialize();
+      $.ajax({
+        url: "/admin/course/createCourse",
+        method: "POST",
+        data: formData,
+        // data: {
+        //   "username": $("#username").val(),
+        //   "password": $("#password").val(),
+        //   "email": $("#email").val(),
+        //   "phone": $("#phone").val(),
+        //   "address": $("#address").val(),
+        //   "role": $("#role_id").val(),
+        // },
+      })
+        .done(function (response) {
+          showSuccess("Tạo khóa học thành công!");
+          window.location.href = "/admin/course";
+          console.log("Success:", response);
+          console.log(formData)
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          // This function runs if the request fails
+          console.log("Request failed:", textStatus);
+          showError("Tạo khóa học thất bại!");
+          console.error("Error:", errorThrown);
+          console.log(jqXHR);
+          console.log(formData)
+          clearErrorMessage();
+          let responseJSON = jqXHR.responseJSON;
+          // $(".name-error").text(responseJSON.RoleNameError);
+        });
+    });
+  });
+</script>

@@ -1,0 +1,88 @@
+<div class="admin-container"></div>
+  <div class="admin-content">
+    <h1 class="title">{{.Title}}</h1>
+    <form id="form">
+      <div class="box-body">
+        <div class="form-group">
+          <label>Tên khóa học</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ti-user"></i></span>
+            </div>
+            <input type="text" class="form-control"id="name" name="courseName" value="{{.CourseTitle}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Mô tả khóa học</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ti-user"></i></span>
+            </div>
+            <input type="text" class="form-control" id="description" name="description" value="{{.CourseDescription}}">
+          </div>
+        </div>
+       
+        <div class="form-group form-group-float">
+          <label class="form-group-float-label">Giáo viên giảng dạy</label>
+          <select name="user_id" id="user_id">
+            {{range .Instructors}}
+            <option value="{{.UserID}}" {{if eq .UserID $.InstructorID}}selected{{end}}>{{.Name}}</option>
+            {{end}}
+          </select>
+        </div>
+      </div>
+      <input type="hidden" id="accountID" value="{{.ID}}">
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-rounded btn-primary btn-outline">
+          <i class="ti-save-alt"></i> Lưu
+        </button>
+      <!-- </div>  -->
+    </form>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    const clearErrorMessage = () => {
+      $(".name-error").text("");
+    };
+
+    $("#form").on("submit", function (event) {
+      event.preventDefault(); // Ngăn chặn hành động gửi mặc định của biểu mẫu
+
+      // Lấy dữ liệu biểu mẫu
+      var formData = $(this).serialize();
+      $.ajax({
+        url: "/admin/course/updateCourse/{{.CourseID}}",
+        method: "PUT",
+        data: formData,
+        // data: {
+        //   "username": $("#username").val(),
+        //   "password": $("#password").val(),
+        //   "email": $("#email").val(),
+        //   "phone": $("#phone").val(),
+        //   "address": $("#address").val(),
+        //   "role": $("#role_id").val(),
+        // },
+      })
+        .done(function (response) {
+          showSuccess("Cập nhật khóa học thành công!");
+          window.location.href = "/admin/course";
+          console.log("Success:", response);
+          console.log(formData)
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          // This function runs if the request fails
+          console.log("Request failed:", textStatus);
+          showError("Cập nhật khóa học thất bại!");
+          console.error("Error:", errorThrown);
+          console.log(jqXHR);
+          console.log(formData)
+          clearErrorMessage();
+          let responseJSON = jqXHR.responseJSON;
+          // $(".name-error").text(responseJSON.RoleNameError);
+        });
+    });
+  });
+</script>

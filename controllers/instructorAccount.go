@@ -23,10 +23,10 @@ func GetDataInstructor(c *fiber.Ctx) error {
 	var users []models.User
 
 	// Get total number of records
-	database.DB.Table("users").Count(&totalRecords)
+	database.DB.Table("users").Where("type = 'instructor'").Count(&totalRecords)
 
 	// Apply search filter if provided
-	query := database.DB.Table("users")
+	query := database.DB.Table("users").Where("type = 'instructor'")
 
 	// search theo cot
 	if searchValue != "" {
@@ -43,7 +43,6 @@ func GetDataInstructor(c *fiber.Ctx) error {
 	log.Println(users)
 	var account []models.UserWithRowNumber
 	result := query.
-		Where("type = 'instructor'").
 		Joins("INNER JOIN roles ON users.role_id = roles.role_id").
 		Select("ROW_NUMBER() OVER (ORDER BY ID) AS RowNumber, users.user_id AS ID, name, username, email, phone_number, roles.role_name AS role_name").
 		Offset(start).

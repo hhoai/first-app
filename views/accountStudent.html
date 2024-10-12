@@ -1,6 +1,6 @@
 <div class="admin-container">
-  <div class="table" style="width: 80%; margin-bottom: 20px">
-    <a href="/admin/account-admin/account">Tạo tài khoản</a>
+  <div class="table" style="margin-bottom: 20px">
+    <a class="create" href="/admin/account-student/account">Tạo tài khoản</a>
     <form id="frm-example">
       <table id="userTable" class="display">
         <thead>
@@ -16,7 +16,7 @@
           </tr>
         </thead>
       </table>
-      <button type="submit">Xóa</button>
+      <button type="submit" class="btn-danger" style="margin-left: 20px; margin-top: 10px">Xóa</button>
     </form>
   </div>
   <!-- <div id="container" style="width: 60%; height: 400px"></div> -->
@@ -32,9 +32,10 @@
         type: "GET",
         dataSrc: (json) => {
           json.data.forEach((element) => {
-            element.Action = `<button type="button" class="update-btn" data-id="${element.ID}">Sửa</button> <button type="button" class="delete-btn" data-id="${element.ID}"> Xóa </button>`;
+            element.Action = `<button type="button" class="update-btn" data-id="${element.ID}">Sửa</button> <button type="button" class="delete-btn btn-danger" data-id="${element.ID}"> Xóa </button>`;
             // element.Checkbox = `<input type="checkbox" data-id="${element.ID}" value="${element.ID}" name="checkbox_id[]">`;
-            element.Checkbox = `<input type="checkbox" class="item-account" value="${element.ID}" name="account_id[]">`;
+            element.Checkbox = `<input type="checkbox" class="item-account filled-in" value="${element.ID}" name="account_id[]">
+                                <label></label>`;
           });
           return json.data;
         },
@@ -93,12 +94,12 @@
       },
       rowCallback: function (row, data) {
         $(row).on("click", function (e) {
-          if (!$(e.target).is(":checkbox")) {
+          console.log(e.target)
             //toogle checkbox
             var checkbox = $(this).find(".item-account");
             checkbox.prop("checked", !checkbox.prop("checked"));
             //add class for selected row
-          }
+          
           if (!row.classList.contains("selectedRow")) {
             row.classList.add("selectedRow");
           } else {

@@ -6,7 +6,7 @@ import (
 
 // Bảng users
 type User struct {
-	UserID      int    `gorm:"primaryKey"`
+	UserID      int    `gorm:"primaryKey;autoIncrement"`
 	Name        string `gorm:"size:255"`
 	Username    string `gorm:"size:255"`
 	Password    string `gorm:"size:255"`
@@ -44,16 +44,17 @@ type RolePermission struct {
 
 // Bảng courses
 type Course struct {
-	CourseID    int    `gorm:"primaryKey"`
-	CourseTitle string `gorm:"size:255"`
-	UserID      int    // Liên kết đến bảng users
+	CourseID          int    `gorm:"primaryKey;autoIncrement"`
+	CourseTitle       string `gorm:"size:255" json:"courseName" form:"courseName"`
+	CourseDescription string `gorm:"size:255" json:"description" form:"description"`
+	UserID            int    // Liên kết đến bảng users
 }
 
 // Bảng courses_users
 type CourseUser struct {
-	CourseUserID int `gorm:"primaryKey"`
-	UserID       int `gorm:"primaryKey"`
-	CourseID     int `gorm:"primaryKey"`
+	CourseUserID int `gorm:"primaryKey;autoIncrement"`
+	UserID       int `json:"user_id" form:"user_id"`
+	CourseID     int `json:"course_id" form:"course_id"`
 }
 
 // Bảng lessons

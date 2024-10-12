@@ -72,7 +72,7 @@ func RouteInit(app *fiber.App) {
 
 	admin.Put("/account-student/account/:id", controller.UpdateStudentAccountPutController)
 
-	// ----- ql quyen
+	// ----- ql quyền
 
 	admin.Get("/account/createRole", controller.CreateRoleController).Name("createRole")
 
@@ -85,4 +85,17 @@ func RouteInit(app *fiber.App) {
 	admin.Put("/account/updateRole/:id", controller.UpdateRolePutController)
 
 	admin.Get("/account/role", controller.RoleController)
+
+	// ----- ql khóa học
+	admin.Get("/course", controller.CourseController)
+
+	admin.Get("/course/createCourse", controller.CreateCourseController)
+
+	admin.Post("/course/createCourse", controller.CreateCoursePostController)
+
+	admin.Get("/course/updateCourse/:id", controller.UpdateCourseController)
+
+	admin.Put("/course/updateCourse/:id", controller.UpdateCoursePutController)
+
+	admin.Get("/course/deleteCourse/:id", controller.DeleteCourseController)
 }

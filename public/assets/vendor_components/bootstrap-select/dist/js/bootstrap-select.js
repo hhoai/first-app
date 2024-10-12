@@ -973,7 +973,7 @@
               containerPos.top += parseInt($container.css('borderTopWidth'));
               containerPos.left += parseInt($container.css('borderLeftWidth'));
             } else {
-              containerPos = { top: 0, left: 0 };
+              containerPos = { };
             }
 
             var winPad = that.options.windowPadding;
@@ -1130,7 +1130,7 @@
               containerPos.top += parseInt($container.css('borderTopWidth')) - $container.scrollTop();
               containerPos.left += parseInt($container.css('borderLeftWidth')) - $container.scrollLeft();
             } else {
-              containerPos = { top: 0, left: 0 };
+              containerPos = { };
             }
 
             actualHeight = $element.hasClass('dropup') ? 0 : $element[0].offsetHeight;

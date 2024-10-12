@@ -22,6 +22,12 @@
             <th>Role</th>
           </tr>
         </thead>
+        <tr>
+          <td>asdad</td>
+          <td>asdad</td>
+          <td>asdad</td>
+          <td>asdad</td>
+        </tr>
       </table>
     </div>
 
@@ -32,23 +38,23 @@
     <script>
       $(document).ready(function () {
         $("#usersTable").DataTable({
-          processing: true,
-          serverSide: true,
-          ajax: {
-            url: "/api/data", // API route
-            type: "GET",
-            dataSrc: function (json) {
-              return json.data; 
-            },
-          },
-          columns: [
-            { data: "UserID" }, // Cột này khớp với "id" trong JSON
-            { data: "Username" }, // Cột này khớp với "name" trong JSON
-            { data: "Email" }, // Cột này khớp với "email" trong JSON
-            { data: "PhoneNumber" }, // Cột này khớp với "role" trong JSON
-            { data: "RoleID" }, // Cột này khớp với "role" trong JSON
-            { data: null }, // Cột này khớp với "role" trong JSON
-          ],
+          // processing: true,
+          // serverSide: true,
+          // ajax: {
+          //   url: "/api/data", // API route
+          //   type: "GET",
+          //   dataSrc: function (json) {
+          //     return json.data; 
+          //   },
+          // },
+          // columns: [
+          //   { data: "UserID" }, // Cột này khớp với "id" trong JSON
+          //   { data: "Username" }, // Cột này khớp với "name" trong JSON
+          //   { data: "Email" }, // Cột này khớp với "email" trong JSON
+          //   { data: "PhoneNumber" }, // Cột này khớp với "role" trong JSON
+          //   { data: "RoleID" }, // Cột này khớp với "role" trong JSON
+          //   { data: null }, // Cột này khớp với "role" trong JSON
+          // ],
         });
       });
     </script>

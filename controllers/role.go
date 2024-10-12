@@ -188,6 +188,7 @@ func UpdateRoleController(c *fiber.Ctx) error {
 		"Permission":   permission,
 		"PermissionID": permissionID,
 		"Ctx":          c,
+		"Title":        "Cập nhật vai trò",
 	}
 
 	// tmpl := template.Must(template.New("").Funcs(template.FuncMap{

@@ -22,6 +22,7 @@ func main() {
 	engine.AddFuncMap(fiber.Map{
 		"isPermissionSelected": controller.IsPermissionSelected,
 		"checkRoleUser":        controller.CheckRoleUser,
+		"getUserName":          controller.GetUserName,
 	})
 
 	app := fiber.New(fiber.Config{
