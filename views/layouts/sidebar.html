@@ -38,6 +38,19 @@
           Cài đặt
         </a>
       </li>
+      {{end}} {{if checkRoleUser "instructor" .Ctx}}
+      <li>
+        <a class="sidebar-item active" href="/">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          Màn hình chính
+        </a>
+      </li>
+      <li>
+        <a class="sidebar-item active" href="/">
+          <i class="fa fa-calendar-o" aria-hidden="true"></i>
+          Quản lý lớp học
+        </a>
+      </li>
       {{end}} {{if checkRoleUser "admin" .Ctx}}
       <li class="treeview">
         <a href="#" class="sidebar-item">

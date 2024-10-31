@@ -5106,11 +5106,11 @@ Theme Info Color
   border-top-color: #ec8000; }
 .theme-info .nav-tabs .nav-link.active {
   border-bottom-color: #00baff;
-  background-color: #00baff;
+  /* background-color: #00baff; */
   color: #ffffff; }
   .theme-info .nav-tabs .nav-link.active:hover, .theme-info .nav-tabs .nav-link.active:focus {
     border-bottom-color: #00baff;
-    background-color: #00baff;
+    /* background-color: #00baff; */
     color: #ffffff; }
 .theme-info .nav-tabs .nav-item.open .nav-link {
   border-bottom-color: #00baff;

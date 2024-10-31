@@ -1,3 +1,26 @@
-<div>
-   {{.Title}}
+<div class="" style="margin: 30px;">
+  {{if checkRoleUser "instructor" .Ctx}}
+
+  <div class="row">
+    <div class="col-md-12 col-lg-4" style="display: flex; gap: 30px; max-width: none;">
+      {{range .Courses}}
+      <div class="card" style="width: 400px">
+        <img
+          class="card-img-top"
+          src="/images/img_code.jpg"
+          alt="Card image cap"
+        />
+        
+        <div class="card-body">
+          <a href="/admin/course/{{.CourseID}}" class="card-title"
+            ><h4>{{.CourseTitle}}</h4></a
+          >
+          <p class="card-text">{{.CourseDescription}}</p>
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </div>
+  {{end}}
+  <!-- {{.Title}} -->
 </div>

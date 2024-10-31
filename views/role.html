@@ -14,8 +14,8 @@
             <td>{{.RowNumber}}</td>
             <td>{{.RoleName}}</td>
             <td>
-              <a class="update-btn" href="updateRole/{{.ID}}">Cập nhật</a>
-              <a class="btn-danger" href="deleteRole/{{.ID}}">xóa</a>
+              <button class="update-btn" data-id="{{ID}}">Cập nhật</button>
+              <a class="btn-danger delete-btn" data-id="{{ID}}">xóa</a> 
             </td>
           </tr>
           {{end}}
@@ -51,6 +51,40 @@
         },
       },
       pageLength: 5,
+    });
+
+    $(document).on("click", ".update-btn", function () {
+      let itemId = $(this).data("id");
+      $.ajax({
+        url: "/admin/account/role/" + itemId,
+        type: "GET",
+        data: JSON.stringify({ title: "Updated Title" }), // Example update data
+        contentType: "application/json",
+        success: function (response) {
+          window.location.href = "/admin/account/role/" + itemId;
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Update failed:", error);
+        },
+      });
+    });
+
+    // delete-btn
+    $(document).on("click", ".delete-btn", function () {
+      let itemId = $(this).data("id");
+
+      $.ajax({
+        url: "/admin/account/role" + itemId,
+        type: "DELETE",
+        success: function (response) {
+          window.location.href = "/admin/account/role";
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Delete failed:", error);
+        },
+      });
     });
   });
 </script>

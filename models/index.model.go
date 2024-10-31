@@ -59,10 +59,12 @@ type CourseUser struct {
 
 // Bảng lessons
 type Lesson struct {
-	LessonID    int    `gorm:"primaryKey"`
-	LessonTitle string `gorm:"size:255"`
-	UserID      int    // Liên kết đến bảng users
-	CourseID    int    // Liên kết đến bảng courses
+	LessonID          int       `gorm:"primaryKey;autoIncrement"`
+	LessonTitle       string    `gorm:"size:255" form:"lesson_title"`
+	LessonDescription string    `form:"lesson_description"`
+	UserID            int       // Liên kết đến bảng users
+	CourseID          int       // Liên kết đến bảng courses
+	StartAt           time.Time `form:"day_start"`
 }
 
 // Bảng posts
@@ -78,14 +80,14 @@ type Post struct {
 
 // Bảng assignments
 type Assignment struct {
-	AssignmentID     int    `gorm:"primaryKey"`
-	AssignmentTitle  string `gorm:"size:255"`
-	AssignmentBody   string
+	AssignmentID     int    `gorm:"primaryKey;autoIncrement"`
+	AssignmentTitle  string `gorm:"size:255" form:"assignment_title"`
+	AssignmentBody   string `form:"assignment_body"`
 	UserID           int    // Liên kết đến bảng users
 	LessonID         int    // Liên kết đến bảng lessons
 	AssignmentStatus string `gorm:"size:255"`
 	CreatedAt        time.Time
-	DueDate          time.Time
+	DueDate          time.Time `form:"due_date"`
 }
 
 // Bảng students_assignments

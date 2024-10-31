@@ -82,9 +82,6 @@ li {
   cursor: pointer;
 }
 
-.active {
-  background: #faf6f6;
-}
 
 .bd-t {
   border-top: 1px solid var(--border-color);
@@ -179,4 +176,50 @@ li {
 .topleft {
   top: 50px !important;
   left: -100px !important;
+}
+
+.image {
+  position: relative;
+}
+
+.course-image {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  width: 100%;
+}
+
+.text-image {
+  position: absolute;
+  bottom: 0px;
+  color: white;
+ 
+  margin: 20px;
+
+}
+
+.noti:hover {
+  color: #333434 !important;
+  cursor: pointer;
+}
+
+.setting-btn {
+  background-color:#fff;
+  border: transparent;
+  border-radius: 6px;
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #188fb7;
+}
+
+.setting-btn:focus {
+  outline: none;
+}
+
+.nav-link {
+  background-color: transparent !important;
+}
+
+.nav-active {
+  border-bottom: 2px solid #0052cc !important;
+
 }

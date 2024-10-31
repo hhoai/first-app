@@ -27,7 +27,7 @@ func CourseController(c *fiber.Ctx) error {
 		"Ctx":     c,
 		"Courses": courses,
 	}
-	return c.Render("course", data, "layouts/main")
+	return c.Render("courseAdmin", data, "layouts/main")
 }
 
 func CreateCourseController(c *fiber.Ctx) error {
@@ -207,7 +207,7 @@ func UpdateCoursePutController(c *fiber.Ctx) error {
 		"Ctx":     c,
 		"Courses": courses,
 	}
-	return c.Render("course", data, "layouts/main")
+	return c.Render("courseAdmin", data, "layouts/main")
 }
 
 func DeleteCourseController(c *fiber.Ctx) error {

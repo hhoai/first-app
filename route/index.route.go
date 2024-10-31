@@ -78,16 +78,18 @@ func RouteInit(app *fiber.App) {
 
 	admin.Post("/account/createRole", controller.CreateRolePostController)
 
-	admin.Get("/account/deleteRole/:id", controller.DeleteRoleController).Name("deleteRole")
+	admin.Delete("/account/role/:id", controller.DeleteRoleController).Name("deleteRole")
 
-	admin.Get("/account/updateRole/:id", controller.UpdateRoleController).Name("UpdateRole")
+	admin.Get("/account/role/:id", controller.UpdateRoleController).Name("UpdateRole")
 
-	admin.Put("/account/updateRole/:id", controller.UpdateRolePutController)
+	admin.Put("/account/role/:id", controller.UpdateRolePutController)
 
 	admin.Get("/account/role", controller.RoleController)
 
 	// ----- ql khóa học
 	admin.Get("/course", controller.CourseController)
+
+	admin.Get("/course/:id", controller.CourseInstructorController)
 
 	admin.Get("/course/createCourse", controller.CreateCourseController)
 
@@ -98,4 +100,16 @@ func RouteInit(app *fiber.App) {
 	admin.Put("/course/updateCourse/:id", controller.UpdateCoursePutController)
 
 	admin.Get("/course/deleteCourse/:id", controller.DeleteCourseController)
+
+	// lesson
+	admin.Get("/course/:id/lesson", controller.LessonController)
+
+	admin.Post("/course/:id/lesson", controller.CreateLessonPostController)
+
+	admin.Get("/course/lesson/:lessonID/detail", controller.LessonDetailController)
+
+	// assignment
+	admin.Post("/course/lesson/:lessonID/detail", controller.CreateAssignmentPostController)
+
+	admin.Get("/course/lesson/assignment/:assignmentID/detail", controller.AssignmentDetailController)
 }
