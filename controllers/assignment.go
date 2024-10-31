@@ -50,6 +50,7 @@ func CreateAssignmentPostController(c *fiber.Ctx) error {
 		"Ctx":         c,
 		"LessonID":    lessonID,
 		"LessonTitle": lesson.LessonTitle,
+		"CourseID":    lesson.CourseID,
 		"Assignments": assignments,
 	}
 

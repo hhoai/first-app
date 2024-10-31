@@ -1,69 +1,81 @@
-<div>
+<div style="margin: auto; width: 850px; padding: 40px 0;">
   <div class="box-body">
-    <i class="fa fa-server" aria-hidden="true"> </i>
-   <div>
-    <div style="display: flex; justify-content: space-betweenu">
-      <div class="title">{{.LessonTitle}}</div>
-      <div class="dropdown">
-        <button
-          class="btn btn-rounded btn-outline btn-dark dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-        </button>
-        <div class="dropdown-menu" style="">
-          <a
-            class="dropdown-item"
+    <i
+      class="fa fa-server"
+      aria-hidden="true"
+      style="
+        padding: 15px;
+        font-size: 24px;
+        color: white;
+        background-color: #0052cc;
+        height: fit-content;
+        border-radius: 50%;
+      "
+    >
+    </i>
+    <div style="width: 100%;">
+      <div style="display: flex; justify-content: space-between">
+        <div class="title">{{.LessonTitle}}</div>
+        <div class="dropdown">
+          <button
+            class="btn btn-rounded btn-outline btn-dark dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+          </button>
+          <div class="dropdown-menu" style="">
+            <a
+              class="dropdown-item"
+              data-toggle="modal"
+              data-target="#modal-fill"
+            >
+              <i class="fa fa-pencil"></i> Chỉnh sửa
+            </a>
+
+            <a class="dropdown-item delete-btn" style="color: #d70b0b;"
+              ><i class="fa fa-trash-o"></i> Xóa</a
+            >
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="p-15">
+          {{range .Assignments}}
+          <div
+            class="lesson"
+            style="
+              border: 1px solid #ccc;
+              border-radius: 6px;
+              padding: 10px 15px;
+              margin-bottom: 20px;
+            "
+          >
+            <a
+              href="/admin/course/lesson/assignment/{{.AssignmentID}}/detail"
+              style="display: flex; justify-content: space-between"
+            >
+              <div>
+                <i class="fa fa-server" aria-hidden="true"> </i>
+                {{.AssignmentTitle}}
+              </div>
+            </a>
+          </div>
+          {{end}}
+          <button
+            type="button"
             data-toggle="modal"
-            data-target="#modal-fill"
+            data-target=".bs-example-modal-lg"
+            class="waves-effect waves-light btn btn-rounded btn-primary mb-5 add-lesson-btn"
           >
-            <i class="fa fa-pencil"></i> Chỉnh sửa
-          </a>
+            + Thêm bài tập
+          </button>
 
-          <a class="dropdown-item" href="#"
-            ><i class="fa fa-trash-o"></i> Xóa</a
-          >
+          <!-- list buoi hoc -->
         </div>
       </div>
     </div>
-    <div>
-      <div class="p-15">
-        {{range .Assignments}}
-        <div
-          class="lesson"
-          style="
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            padding: 10px 15px;
-            margin-bottom: 20px;
-          "
-        >
-          <a
-            href="/admin/course/lesson/assignment/{{.AssignmentID}}/detail"
-            style="display: flex; justify-content: space-between"
-          >
-            <div>
-              <i class="fa fa-server" aria-hidden="true"> </i>
-              {{.AssignmentTitle}}
-            </div>
-          </a>
-        </div>
-        {{end}}
-        <button
-          type="button"
-          data-toggle="modal"
-          data-target=".bs-example-modal-lg"
-          class="waves-effect waves-light btn btn-rounded btn-primary mb-5 add-lesson-btn"
-        >
-          + Thêm bài tập
-        </button>
-
-        <!-- list buoi hoc -->
-      </div>
-    </div>
-   </div>
   </div>
 </div>
 
@@ -506,24 +518,35 @@
 </div>
 
 <!-- chinh sua khoa hoc -->
-<div class="modal modal-fill fade" data-backdrop="false" id="modal-fill" tabindex="-1" aria-hidden="true" style="display: none;">
+<div
+  class="modal modal-fill fade"
+  data-backdrop="false"
+  id="modal-fill"
+  tabindex="-1"
+  aria-hidden="true"
+  style="display: none"
+>
   <div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title">Modal title</h5>
-    <button type="button" class="close" data-dismiss="modal">
-      <span aria-hidden="true">×</span>
-    </button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your content comes here</p>
+        <br /><br /><br /><br /><br /><br />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary float-right">
+          Save changes
+        </button>
+      </div>
     </div>
-    <div class="modal-body">
-    <p>Your content comes here</p>
-    <br><br><br><br><br><br>
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary float-right">Save changes</button>
-    </div>
-  </div>
   </div>
 </div>
 
@@ -558,7 +581,7 @@
         .done(function (response) {
           window.location.href = "/admin/course/lesson/{{.LessonID}}/detail";
           console.log("Success:", response);
-          showSuccess("Thêm bài tập thành công!")
+          showSuccess("Thêm bài tập thành công!");
           console.log(formData);
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
@@ -575,6 +598,20 @@
           // $(".phone-error").text(responseJSON.PhoneError);
           // $(".address-error").text(responseJSON.AddressError);
         });
+    });
+    
+    $(document).on("click", ".delete-btn", function () {
+      $.ajax({
+        url: "/admin/course/lesson/{{.LessonID}}/detail",
+        type: "DELETE",
+        success: function (response) {
+          window.location.href = "/admin/course/{{.CourseID}}/lesson";
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Delete failed:", error);
+        },
+      });
     });
   });
 </script>

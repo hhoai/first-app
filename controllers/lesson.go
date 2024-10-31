@@ -85,10 +85,36 @@ func LessonDetailController(c *fiber.Ctx) error {
 
 	data := fiber.Map{
 		"Ctx":         c,
+		"CourseID":    lesson.CourseID,
 		"LessonID":    lesson.LessonID,
 		"LessonTitle": lesson.LessonTitle,
 		"Assignments": assignments,
 	}
 
 	return c.Render("lessonDetail", data, "layouts/main")
+}
+
+func LessonDeleteController(c *fiber.Ctx) error {
+	lessonID := c.Params("lessonID")
+
+	var lesson models.Lesson
+	if err := database.DB.Where("lesson_id = ?", lessonID).First(&lesson).Error; err != nil {
+		log.Println(err)
+	}
+
+	if err := database.DB.Delete(&lesson).Error; err != nil {
+		log.Println(err)
+	}
+
+	var lessons []models.Lesson
+	if err := database.DB.Where("course_id = ?", lesson.CourseID).Find(&lessons).Error; err != nil {
+		log.Println(err)
+	}
+
+	data := fiber.Map{
+		"Ctx":      c,
+		"CourseID": lesson.CourseID,
+		"Lessons":  lessons,
+	}
+	return c.Render("lesson", data, "layouts/main")
 }
