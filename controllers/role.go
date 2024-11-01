@@ -41,7 +41,7 @@ func RoleController(c *fiber.Ctx) error {
 
 	log.Println("role", role)
 
-	return c.Render("role", fiber.Map{
+	return c.Render("role/index", fiber.Map{
 		"Roles": role,
 		"Ctx":   c,
 	}, "layouts/main")
@@ -61,7 +61,7 @@ func CreateRoleController(c *fiber.Ctx) error {
 		"Ctx":        c,
 	}
 
-	return c.Render("createRole", data, "layouts/main")
+	return c.Render("role/create", data, "layouts/main")
 }
 
 // handle create role
@@ -136,7 +136,7 @@ func CreateRolePostController(c *fiber.Ctx) error {
 	log.Println(role)
 	// roles :=
 
-	return c.Render("role", fiber.Map{
+	return c.Render("role/index", fiber.Map{
 		"Roles": role,
 		"Ctx":   c,
 	}, "layouts/main")
@@ -197,7 +197,7 @@ func UpdateRoleController(c *fiber.Ctx) error {
 
 	// return tmpl.ExecuteTemplate(c.Response().BodyWriter(), "updateRole.html", data)
 
-	return c.Render("updateRole", data, "layouts/main")
+	return c.Render("role/edit", data, "layouts/main")
 }
 
 // handle update role
@@ -257,7 +257,7 @@ func UpdateRolePutController(c *fiber.Ctx) error {
 	log.Println(role)
 	// roles :=
 
-	return c.Render("role", fiber.Map{
+	return c.Render("role/index", fiber.Map{
 		"Roles": role,
 		"Ctx":   c,
 	}, "layouts/main")

@@ -31,5 +31,5 @@ func CourseInstructorController(c *fiber.Ctx) error {
 		"InstructorName":    user.Name,
 		"Lessons":           lesson,
 	}
-	return c.Render("courseInstructor", data, "layouts/main")
+	return c.Render("course/instructor", data, "layouts/main")
 }

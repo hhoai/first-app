@@ -24,7 +24,7 @@ func LessonController(c *fiber.Ctx) error {
 		"CourseID": courseID,
 		"Lessons":  lessons,
 	}
-	return c.Render("lesson", data, "layouts/main")
+	return c.Render("lesson/index", data, "layouts/main")
 }
 
 func CreateLessonPostController(c *fiber.Ctx) error {
@@ -66,7 +66,7 @@ func CreateLessonPostController(c *fiber.Ctx) error {
 		"LessonID":          lesson.LessonID,
 	}
 
-	return c.Render("courseInstructor", data, "layouts/main")
+	return c.Render("course/instructor", data, "layouts/main")
 }
 
 func LessonDetailController(c *fiber.Ctx) error {
@@ -84,14 +84,16 @@ func LessonDetailController(c *fiber.Ctx) error {
 	}
 
 	data := fiber.Map{
-		"Ctx":         c,
-		"CourseID":    lesson.CourseID,
-		"LessonID":    lesson.LessonID,
-		"LessonTitle": lesson.LessonTitle,
-		"Assignments": assignments,
+		"Ctx":               c,
+		"CourseID":          lesson.CourseID,
+		"LessonID":          lesson.LessonID,
+		"LessonTitle":       lesson.LessonTitle,
+		"StartAt":           lesson.StartAt.Format("2006-01-02"),
+		"LessonDescription": lesson.LessonDescription,
+		"Assignments":       assignments,
 	}
 
-	return c.Render("lessonDetail", data, "layouts/main")
+	return c.Render("lesson/detail", data, "layouts/main")
 }
 
 func LessonDeleteController(c *fiber.Ctx) error {
@@ -116,5 +118,5 @@ func LessonDeleteController(c *fiber.Ctx) error {
 		"CourseID": lesson.CourseID,
 		"Lessons":  lessons,
 	}
-	return c.Render("lesson", data, "layouts/main")
+	return c.Render("lesson/index", data, "layouts/main")
 }

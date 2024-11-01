@@ -67,7 +67,7 @@ func GetDataStudent(c *fiber.Ctx) error {
 }
 
 func StudentAccountController(c *fiber.Ctx) error {
-	return c.Render("accountStudent", fiber.Map{
+	return c.Render("account/accountStudent", fiber.Map{
 		// "SaleData": sales,
 		"Ctx": c,
 	}, "layouts/main")
@@ -86,7 +86,7 @@ func CreateStudentAccountController(c *fiber.Ctx) error {
 		"Ctx":  c,
 	}
 
-	return c.Render("createStudentAccount", data, "layouts/main")
+	return c.Render("account/createStudentAccount", data, "layouts/main")
 }
 
 // post
@@ -200,7 +200,7 @@ func UpdateStudentAccountController(c *fiber.Ctx) error {
 		"Roles":       roles,
 		"Ctx":         c,
 	}
-	return c.Render("updateStudentAccount", data, "layouts/main")
+	return c.Render("account/updateStudentAccount", data, "layouts/main")
 }
 
 // put
@@ -275,7 +275,7 @@ func UpdateStudentAccountPutController(c *fiber.Ctx) error {
 		"Users": users,
 		"Ctx":   c,
 	}
-	return c.Render("accountStudent", user, "layouts/main")
+	return c.Render("account/accountStudent", user, "layouts/main")
 	// return c.Redirect("/admin")
 	// ...
 }
@@ -312,7 +312,7 @@ func DeleteStudentAccountController(c *fiber.Ctx) error {
 		"Users": users,
 		"Ctx":   c,
 	}
-	return c.Render("accountStudent", user, "layouts/main")
+	return c.Render("account/accountStudent", user, "layouts/main")
 }
 
 func DeleteMultipleSutdentAccounts(c *fiber.Ctx) error {

@@ -54,7 +54,7 @@ func CreateAssignmentPostController(c *fiber.Ctx) error {
 		"Assignments": assignments,
 	}
 
-	return c.Render("lessonDetail", data, "layouts/main")
+	return c.Render("lesson/detail", data, "layouts/main")
 }
 
 func AssignmentDetailController(c *fiber.Ctx) error {
@@ -75,5 +75,5 @@ func AssignmentDetailController(c *fiber.Ctx) error {
 		"DueDate":          assignment.DueDate,
 	}
 
-	return c.Render("assignmentDetail", data, "layouts/main")
+	return c.Render("assignment/detail", data, "layouts/main")
 }

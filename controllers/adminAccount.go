@@ -129,7 +129,7 @@ func GetDataAdmin(c *fiber.Ctx) error {
 }
 
 func AdminAccountController(c *fiber.Ctx) error {
-	return c.Render("accountAdmin", fiber.Map{
+	return c.Render("account/account/accountAdmin", fiber.Map{
 		// "SaleData": sales,
 		"Ctx": c,
 	}, "layouts/main")
@@ -149,7 +149,7 @@ func CreateAdminAccountController(c *fiber.Ctx) error {
 		"Title": "Tạo tài khoản",
 	}
 
-	return c.Render("createAdminAccount", data, "layouts/main")
+	return c.Render("account/account/createAdminAccount", data, "layouts/main")
 }
 
 // post
@@ -264,7 +264,7 @@ func UpdateAdminAccountController(c *fiber.Ctx) error {
 		"Title":       "Cập nhật tài khoản",
 		"Ctx":         c,
 	}
-	return c.Render("updateAdminAccount", data, "layouts/main")
+	return c.Render("account/updateAdminAccount", data, "layouts/main")
 }
 
 // put
@@ -339,7 +339,7 @@ func UpdateAdminAccountPutController(c *fiber.Ctx) error {
 		// "Users": users,
 		"Ctx": c,
 	}
-	return c.Render("accountAdmin", user, "layouts/main")
+	return c.Render("account/accountAdmin", user, "layouts/main")
 	// ...
 }
 
@@ -375,7 +375,7 @@ func DeleteAdminAccountController(c *fiber.Ctx) error {
 		"Users": users,
 		"Ctx":   c,
 	}
-	return c.Render("accountAdmin", user, "layouts/main")
+	return c.Render("account/accountAdmin", user, "layouts/main")
 }
 
 func DeleteMultipleAccounts(c *fiber.Ctx) error {

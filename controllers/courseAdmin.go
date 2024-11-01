@@ -27,7 +27,7 @@ func CourseController(c *fiber.Ctx) error {
 		"Ctx":     c,
 		"Courses": courses,
 	}
-	return c.Render("courseAdmin", data, "layouts/main")
+	return c.Render("course/admin", data, "layouts/main")
 }
 
 func CreateCourseController(c *fiber.Ctx) error {
@@ -36,7 +36,7 @@ func CreateCourseController(c *fiber.Ctx) error {
 		"Ctx":   c,
 		"Title": "Thêm khóa học",
 	}
-	return c.Render("createCourse", data, "layouts/main")
+	return c.Render("course/create", data, "layouts/main")
 }
 
 func CreateCoursePostController(c *fiber.Ctx) error {
@@ -121,7 +121,7 @@ func UpdateCourseController(c *fiber.Ctx) error {
 		"Title":             "Cập nhật khóa học",
 	}
 
-	return c.Render("updateCourse", data, "layouts/main")
+	return c.Render("course/edit", data, "layouts/main")
 }
 
 func UpdateCoursePutController(c *fiber.Ctx) error {
@@ -207,7 +207,7 @@ func UpdateCoursePutController(c *fiber.Ctx) error {
 		"Ctx":     c,
 		"Courses": courses,
 	}
-	return c.Render("courseAdmin", data, "layouts/main")
+	return c.Render("course/admin", data, "layouts/main")
 }
 
 func DeleteCourseController(c *fiber.Ctx) error {

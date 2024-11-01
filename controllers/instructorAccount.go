@@ -67,7 +67,7 @@ func GetDataInstructor(c *fiber.Ctx) error {
 }
 
 func InstructorAccountController(c *fiber.Ctx) error {
-	return c.Render("accountInstructor", fiber.Map{
+	return c.Render("account/accountInstructor", fiber.Map{
 		// "SaleData": sales,
 		"Ctx": c,
 	}, "layouts/main")
@@ -86,7 +86,7 @@ func CreateInstructorAccountController(c *fiber.Ctx) error {
 		"Ctx":  c,
 	}
 
-	return c.Render("createInstructorAccount", data, "layouts/main")
+	return c.Render("account/createInstructorAccount", data, "layouts/main")
 }
 
 // post
@@ -200,7 +200,7 @@ func UpdateInstructorAccountController(c *fiber.Ctx) error {
 		"Roles":       roles,
 		"Ctx":         c,
 	}
-	return c.Render("updateInstructorAccount", data, "layouts/main")
+	return c.Render("account/updateInstructorAccount", data, "layouts/main")
 }
 
 // put
@@ -275,7 +275,7 @@ func UpdateInstructorAccountPutController(c *fiber.Ctx) error {
 		"Users": users,
 		"Ctx":   c,
 	}
-	return c.Render("accountInstructor", user, "layouts/main")
+	return c.Render("account/accountInstructor", user, "layouts/main")
 	// return c.Redirect("/admin")
 	// ...
 }
@@ -312,7 +312,7 @@ func DeleteInstructorAccountController(c *fiber.Ctx) error {
 		"Users": users,
 		"Ctx":   c,
 	}
-	return c.Render("accountInstructor", user, "layouts/main")
+	return c.Render("account/accountInstructor", user, "layouts/main")
 }
 
 func DeleteMultipleInsructorAccounts(c *fiber.Ctx) error {
