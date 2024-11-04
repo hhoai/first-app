@@ -129,7 +129,7 @@ func GetDataAdmin(c *fiber.Ctx) error {
 }
 
 func AdminAccountController(c *fiber.Ctx) error {
-	return c.Render("account/account/accountAdmin", fiber.Map{
+	return c.Render("account/accountAdmin", fiber.Map{
 		// "SaleData": sales,
 		"Ctx": c,
 	}, "layouts/main")
@@ -149,7 +149,7 @@ func CreateAdminAccountController(c *fiber.Ctx) error {
 		"Title": "Tạo tài khoản",
 	}
 
-	return c.Render("account/account/createAdminAccount", data, "layouts/main")
+	return c.Render("account/createAdminAccount", data, "layouts/main")
 }
 
 // post

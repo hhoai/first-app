@@ -48,19 +48,39 @@
             style="
               border: 1px solid #ccc;
               border-radius: 6px;
-              padding: 10px 15px;
+              padding: 0 25px;
               margin-bottom: 20px;
             "
           >
-            <a
-              href="/admin/course/lesson/assignment/{{.AssignmentID}}/detail"
-              style="display: flex; justify-content: space-between"
-            >
-              <div>
-                <i class="fa fa-server" aria-hidden="true"> </i>
+            <div class="lesson-title">
+              <div style="display: flex; justify-content: space-between; width: 100%; padding: 15px 0; cursor: pointer">
+                <div>
+                <i class="fa fa-pencil-square-o" aria-hidden="true" style="
+                    padding: 8px;
+                    margin-right: 5px;
+                    border-radius: 50%;
+                    color: #fff;
+                    background: #0052cc;
+                    font-size: 16px;
+                "> </i>
                 {{.AssignmentTitle}}
+                </div>
+                <div>Đã đăng vào {{.CreatedAt}}</div>
               </div>
-            </a>
+            </div>
+            <div class="detail" style="display: none">
+              <div style="display: flex; justify-content: space-between;padding: 15px 0; border-top: 1px solid #ccc; ">
+                <p>Hạn nộp {{.DueDate}}</p>
+                <div style="display: flex; flex-direction: column; border-left: 1px solid #ccc; padding-left: 10px;">
+                  <h2>0</h2>
+                  <p>Đã nộp</p>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 15px 0; border-top: 1px solid #ccc;">
+                <a href="/admin/course/lesson/assignment/{{.AssignmentID}}/detail">Chi tiết</a>
+                <a href="" class="delete-assignment-btn" style="color: red" data-id="{{.AssignmentID}}">Xóa</a>
+              </div>
+            </div>
           </div>
           {{end}}
           <button
@@ -982,6 +1002,26 @@
         type: "DELETE",
         success: function (response) {
           window.location.href = "/admin/course/{{.CourseID}}/lesson";
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Delete failed:", error);
+        },
+      });
+    });
+
+    $(".lesson-title").on("click", function () {
+      $(this).next(".detail").toggle()
+    })
+
+    $(document).on("click", ".delete-assignment-btn", function () {
+      let itemId = $(this).data("id");
+
+      $.ajax({
+        url: "/admin/course/lesson/{{.LessonID}}/detail/" + itemId,
+        type: "DELETE",
+        success: function (response) {
+          window.location.href = "/admin/course/lesson/{{.LessonID}}/detail/";
           console.log(response);
         },
         error: function (xhr, status, error) {

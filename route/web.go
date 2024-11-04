@@ -113,4 +113,6 @@ func RouteInit(app *fiber.App) {
 	admin.Post("/course/lesson/:lessonID/detail", controller.CreateAssignmentPostController)
 
 	admin.Get("/course/lesson/assignment/:assignmentID/detail", controller.AssignmentDetailController)
+
+	admin.Delete("/course/lesson/:lessonID/detail/:assignmentID", controller.AssignmentDeleteController)
 }

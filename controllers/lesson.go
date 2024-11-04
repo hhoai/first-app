@@ -83,6 +83,20 @@ func LessonDetailController(c *fiber.Ctx) error {
 		log.Println(err)
 	}
 
+	var assignmentDetail []models.AssignmentDetail
+	for _, assignment := range assignments {
+		var temp models.AssignmentDetail
+		temp.AssignmentID = assignment.AssignmentID
+		temp.LessonID = assignment.LessonID
+		temp.AssignmentBody = assignment.AssignmentBody
+		temp.AssignmentStatus = assignment.AssignmentStatus
+		temp.AssignmentTitle = assignment.AssignmentTitle
+		temp.UserID = assignment.UserID
+		temp.DueDate = assignment.DueDate.Format("15:04 02/01/2006")
+		temp.CreatedAt = assignment.CreatedAt.Format("02/01/2006")
+		assignmentDetail = append(assignmentDetail, temp)
+	}
+
 	data := fiber.Map{
 		"Ctx":               c,
 		"CourseID":          lesson.CourseID,
@@ -90,7 +104,7 @@ func LessonDetailController(c *fiber.Ctx) error {
 		"LessonTitle":       lesson.LessonTitle,
 		"StartAt":           lesson.StartAt.Format("2006-01-02"),
 		"LessonDescription": lesson.LessonDescription,
-		"Assignments":       assignments,
+		"Assignments":       assignmentDetail,
 	}
 
 	return c.Render("lesson/detail", data, "layouts/main")
